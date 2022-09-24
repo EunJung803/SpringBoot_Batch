@@ -67,6 +67,15 @@ public class HelloWorldJobConfig {
             @Override
             public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
                 System.out.println("hello world 테스클릿 2");
+
+                /*
+                // 스탭이 실패하도록 설정하는 부분 -> return이 먹히지 않게됨
+                // 하나만 성공하고 하나만 실패해도, 즉 하나라도 실패하면 그냥 실패로 저장됨 (FAILED)
+                if ( true ) {
+                    throw new Exception("실패 : 헬로월드 테스클릿 2");
+                }
+                 */
+
                 return RepeatStatus.FINISHED;   // 성공 or 실패의 여부를 return
             }
         };
