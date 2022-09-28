@@ -18,7 +18,10 @@ import static javax.persistence.FetchType.LAZY;
 public class ProductOption extends BaseEntity {
     private String color;
     private String size;
+    private String displayColor;    // 노출용 색상
+    private String displaySize;     // 노출용 사이즈
     private int price;
+    private int wholesalePrice;     // 도매가
     @ManyToOne(fetch = LAZY)
     @ToString.Exclude
     private Product product;
@@ -27,7 +30,9 @@ public class ProductOption extends BaseEntity {
 
     public ProductOption(String color, String size) {
         this.color = color;
+        this.displayColor = color;
         this.size = size;
+        this.displaySize = size;
     }
 
     public boolean isOrderable(int quantity) {
