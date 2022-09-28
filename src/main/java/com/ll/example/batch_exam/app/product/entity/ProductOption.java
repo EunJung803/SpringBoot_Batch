@@ -20,7 +20,8 @@ public class ProductOption extends BaseEntity {
     private String size;
     private String displayColor;    // 노출용 색상
     private String displaySize;     // 노출용 사이즈
-    private int price;
+    private int price;              // 소비자 가격
+    private int salePrice;          // 권장 판매 가격
     private int wholesalePrice;     // 도매가
     @ManyToOne(fetch = LAZY)
     @ToString.Exclude
