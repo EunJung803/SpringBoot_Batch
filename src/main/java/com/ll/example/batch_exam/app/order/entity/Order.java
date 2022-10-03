@@ -52,4 +52,10 @@ public class Order extends BaseEntity {
             orderItem.setPaymentDone();
         }
     }
+
+    public void setRefundDone() {
+        for ( OrderItem orderItem : orderItems ) {
+            orderItem.setRefundDone();
+        }
+    }
 }
