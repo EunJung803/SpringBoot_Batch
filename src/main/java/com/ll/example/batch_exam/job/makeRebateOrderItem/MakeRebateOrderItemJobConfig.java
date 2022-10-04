@@ -70,9 +70,9 @@ public class MakeRebateOrderItemJobConfig {
         return new RepositoryItemReaderBuilder<OrderItem>()
                 .name("orderItemReader")
                 .repository(orderItemRepository)
-                .methodName("findAllByIdLessThan")
+                .methodName("findAllByIsPaid")
                 .pageSize(100)
-                .arguments(Arrays.asList(6L))
+                .arguments(Arrays.asList(true))
                 .sorts(Collections.singletonMap("id", Sort.Direction.ASC))
                 .build();
     }
