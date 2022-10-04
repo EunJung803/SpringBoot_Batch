@@ -125,6 +125,13 @@ public class DevInitData {
                     )
             );
             orderService.payByRestCashOnly(order4);
+
+            // 5번 주문 생성 (결제 전)
+            Order order5 = helper.order(member1, Arrays.asList(
+                            product1Option__RED_44,
+                            product2Option__WHITE_44
+                    )
+            );
         };
     }
 }
