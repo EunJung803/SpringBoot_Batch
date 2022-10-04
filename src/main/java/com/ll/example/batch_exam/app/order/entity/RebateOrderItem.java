@@ -51,6 +51,16 @@ public class RebateOrderItem extends BaseEntity {
     private String productName;
 
     // 상품옵션
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "color", column = @Column(name = "product_option_color")),
+            @AttributeOverride(name = "size", column = @Column(name = "product_option_size")),
+            @AttributeOverride(name = "displayColor", column = @Column(name = "product_option_display_color")),
+            @AttributeOverride(name = "displaySize", column = @Column(name = "product_option_display_size"))
+    })
+    private RebateOrderItem.EmbProductOption embProductOption;
+
+    // 상품옵션
     private String productOptionColor;
     private String productOptionSize;
     private String productOptionDisplayColor;
@@ -77,13 +87,26 @@ public class RebateOrderItem extends BaseEntity {
         productName = orderItem.getProductOption().getProduct().getName();
 
         // 상품 옵션 추가데이터
-        productOptionColor = orderItem.getProductOption().getColor();
-        productOptionSize = orderItem.getProductOption().getSize();
-        productOptionDisplayColor = orderItem.getProductOption().getDisplayColor();
-        productOptionDisplaySize = orderItem.getProductOption().getDisplaySize();
+        embProductOption = new EmbProductOption(orderItem.getProductOption());
 
         // 주문품목 추가데이터
         orderItemCreateDate = orderItem.getCreateDate();
 
+    }
+
+    @Embeddable
+    @NoArgsConstructor
+    public static class EmbProductOption {
+        private String color;
+        private String size;
+        private String displayColor;
+        private String displaySize;
+
+        public EmbProductOption(ProductOption productOption) {
+            color = productOption.getColor();
+            size = productOption.getSize();
+            displayColor = productOption.getDisplayColor();
+            displaySize = productOption.getDisplaySize();
+        }
     }
 }
